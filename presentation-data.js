@@ -53,7 +53,7 @@ window.OSavePresentation = {
   },
   achievements: [
     { group: "Import- 08/07/2026-63.24%", title: "Import", subtitle: "08/07/2026", image: "assets/achievements/vos-erp-source.png", caption: "VERTEX (Import): Active in corporate subsidiaries. Handles over Php 250M of consolidated transactions annually. Projected annual profit is Php 15M." },
-    { group: "Local-08/12/2026-58.33%", title: "Local", subtitle: "08/12/2026-", image: "assets/achievements/lgu-mapandan-source.jpeg", caption: "Local: Completed high-capacity solar grid installation project, serving as the model site for group green energy integration." },
+    { group: "Local-08/12/2026-58.33%", title: "Local", subtitle: "08/12/2026-", image: "assets/achievements/certificate_of_analysis.jpg", caption: "Local: Completed high-capacity solar grid installation project, serving as the model site for group green energy integration." },
     { group: "Local- 08/25/2026-58.67%", title: "Local", subtitle: "08/25/2026", image: "assets/achievements/foodsphere-source.jpg", caption: "Local: Successfully engaged with Foodsphere Inc. (Frozen) in La Union, securing storage and distribution operations." },
     { group: "Local- 08/25/2026-58.67%", title: "Kopiko Engagement", subtitle: "MEN2 Dagupan - Pangasinan", image: null, caption: "MEN2 Dagupan: Successfully engaged with ECOSSENTIALS FOODS CORP (KOPIKO) in Pangasinan to handle regional food trade distribution." },
     { group: "Local- 08/25/2026-58.67%", title: "Federated Onboarding", subtitle: "MEN2 Manila - Commenced Mar 2026", image: null, caption: "MEN2 Manila (Federated): Commenced regional distribution partnership in March 2026, targeting a potential volume of 6M." },
