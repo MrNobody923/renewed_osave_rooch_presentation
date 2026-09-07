@@ -1019,6 +1019,23 @@ document.addEventListener('DOMContentLoaded', () => {
           if (currValue) currValue.textContent = compactNumber.format(calc.currActualMixed);
           if (expValue) expValue.textContent = compactNumber.format(calc.expActualMixed);
           if (demandValue) demandValue.textContent = compactNumber.format(OIL_DEMAND_VALUES[p]);
+          
+          const wrapper = document.querySelectorAll('.oil-chart-row .chart-bar-wrapper')[i];
+          if (wrapper) {
+            if (i === selectedIndex) {
+              wrapper.style.opacity = '1';
+              wrapper.style.transform = 'scale(1.1)';
+              wrapper.style.filter = 'drop-shadow(0 0 10px rgba(14, 165, 233, 0.4))';
+              wrapper.style.transition = 'all 0.3s ease';
+              wrapper.style.zIndex = '10';
+            } else {
+              wrapper.style.opacity = '0.4';
+              wrapper.style.transform = 'scale(0.95)';
+              wrapper.style.filter = 'none';
+              wrapper.style.transition = 'all 0.3s ease';
+              wrapper.style.zIndex = '1';
+            }
+          }
         });
 
         const c = calcs[selectedIndex];
