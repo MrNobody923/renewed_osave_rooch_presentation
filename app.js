@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const progressLineBar = document.getElementById('progressLineBar');
   const sectionIndicator = document.getElementById('sectionIndicator');
   let navItems = document.querySelectorAll('.nav-item');
-  let currentSlideIndex = 21;
-  let isTitleSlideActive = false;
+  let currentSlideIndex = 0;
+  let isTitleSlideActive = true;
   let totalSlides = slides.length;
 
   function initSidebarNavigation() {
@@ -291,315 +291,21 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', checkWidth);
 
   /* ==========================================================================
-     Gallery Tabs Handler (Hanvins Construction Projects)
-     ========================================================================== */
-
-  /* ==========================================================================
-     Slide 2 Corporate Structure Hover Synergy
-     ========================================================================== */
-  const corporateData = {
-    rooch: {
-      title: "Group Oversight",
-      subtitle: "Strategic Direction & Core Governance",
-      desc: "ROOCH Holding Inc. serves as the foundational parent entity, providing strategic corporate governance, key capital allocation, and group-wide operational synergy.",
-      bullets: [
-        { icon: "🛡️", title: "Strategic Capitalization", text: "Empowering fast-growing subsidiaries with the robust financial resources and scaling pathways to dominate local markets." },
-        { icon: "📈", title: "Diversified Synergy", text: "Balancing operational risk and compound growth across civil construction, retail FMCG logistics, and enterprise software suites." }
-      ]
-    },
-    hanvins: {
-      title: "Hanvins Construction",
-      subtitle: "Civil Infrastructure & Public Works",
-      desc: "Delivering robust infrastructure, public highway connections, commercial plazas, and municipal development designs across regions.",
-      bullets: [
-        { icon: "🏗️", title: "Large-Scale Portfolio", text: "₱250M+ active project pipeline encompassing private commercial builds and municipal civil works." },
-        { icon: "💰", title: "Banking Partner Funding Expansion", text: "Requesting ₱153M in capital upgrades for fleet expansion and batching plant acquisition." }
-      ]
-    },
-    vertex: {
-      title: "Vertex Technologies",
-      subtitle: "Enterprise Software & Cloud Platforms",
-      desc: "Creators of enterprise ERP software, eLGU digitization systems, Dealerover SaaS portals, and customized municipal database architectures.",
-      bullets: [
-        { icon: "💻", title: "eLGU Digitization", text: "Active across 50+ municipal portals, digitizing tax clearance, permit approvals, and public records." },
-        { icon: "⚙️", title: "Dealerover SaaS", text: "Automating heavy machinery dealer operations, equipment leasing schedules, and parts inventories." }
-      ]
-    },
-
-    men2solutions: {
-      title: "MEN2 Solutions",
-      subtitle: "Manpower Sourcing & Talent Acquisition",
-      desc: "Specialized corporate staffing and labor supply provider, sourcing high-caliber professionals, skilled industrial workers, and operational personnel across group subsidiaries.",
-      bullets: [
-        { icon: "👥", title: "Strategic Staffing", text: "Managing group-wide staffing needs, recruitment drives, and human resource scaling pathways." },
-        { icon: "🛠️", title: "Labor Allocation", text: "Providing immediate skilled labor support to construction (Hanvins) and logistics (MEN2) operations." }
-      ]
-    },
-
-    men2dagupan: {
-      title: "MEN2 Dagupan",
-      subtitle: "North Luzon Logistics & Supply",
-      desc: "Primary northern logistics hub, coordinating regional FMCG distribution pipelines and Mama Pina's food cargo dispatch.",
-      bullets: [
-        { icon: "🚛", title: "North Supply Authority", text: "₱45M+ annual volume, servicing major outlets across Region 1, 2, and CAR." },
-        { icon: "📦", title: "Mama Pina's Synergy", text: "Direct distribution integration with Pangasinan noodle processing units." }
-      ]
-    },
-    men2marikina: {
-      title: "MEN2 Marikina",
-      subtitle: "NCR & South Luzon Logistics",
-      desc: "Southern distribution anchor, managing regional warehouse dispatch and automated retail replenishment.",
-      bullets: [
-        { icon: "🏭", title: "NCR Replenishment", text: "₱68M+ annual volume, servicing Metro Manila and Calabarzon retail networks." },
-        { icon: "⚡", title: "Dealerover Sync", text: "Real-time middleware routing schedules trigger rapid deliveries." }
-      ]
-    },
-    mamapina: {
-      title: "Mama Pina's Food Brand",
-      subtitle: "Traditional Recipes & Consumer Foods",
-      desc: "Beloved traditional food brand celebrated for local recipes, high-quality noodle products, and high customer retention. Directly integrated with MEN2 logistics.",
-      bullets: [
-        { icon: "🍜", title: "Consumer Favorite", text: "Famous for traditional quality noodles, generating high customer loyalty and brand retention." },
-        { icon: "🌾", title: "Integrated Distribution", text: "Directly synchronized with MEN2 logistics network to supply local supermarkets and O!Save discount stores." }
-      ]
-    },
-
-    jcbs: {
-      title: "JCBS",
-      subtitle: "Industrial Business & Engineering",
-      desc: "Specialized service division focused on industrial plant services, boiler/extruder operations, heavy machinery uptime, and key partnerships to scale manufacturing infrastructure.",
-      bullets: [
-        { icon: "🏗️", title: "Industrial Services", text: "Uptime management for boilers, extruders, and facility manufacturing lines." },
-        { icon: "⚓", title: "Logistics Partnerships", text: "Successfully integrated fuel logistics and compliance with Sea Oil Philippines Inc." }
-      ]
-    }
-  };
-  const flowCards = document.querySelectorAll('.interactive-flow-card');
-  const companyModal = document.getElementById('companyDetailsModal');
-  const closeCompanyModalBtn = document.getElementById('closeCompanyModal');
-
-  // PDF Viewer Modal elements
-  const pdfViewerModal = document.getElementById('pdfViewerModal');
-  const pdfViewerContent = pdfViewerModal ? pdfViewerModal.querySelector('.glass-card') : null;
-  const pdfViewerIframe = document.getElementById('pdfViewerIframe');
-  const pdfViewerTitle = document.getElementById('pdfViewerTitle');
-  const closePdfModalBtn = document.getElementById('closePdfModal');
-
-  if (flowCards && companyModal && closeCompanyModalBtn) {
-    const modalContent = companyModal.querySelector('.modal-content-box');
-    const subtitleEl = document.getElementById('modalCompanySubtitle');
-    const titleEl = document.getElementById('modalCompanyTitle');
-    const descEl = document.getElementById('modalCompanyDesc');
-    const bulletsEl = document.getElementById('modalCompanyBullets');
-    const papersContainer = document.getElementById('modalCompanyPapersContainer');
-    const papersNoteEl = document.getElementById('modalCompanyPapersNote');
-    const papersListEl = document.getElementById('modalCompanyPapersList');
-
-    function openCompanyModal(companyKey) {
-      const data = corporateData[companyKey];
-      if (!data) return;
-
-      // Populate textual information
-      subtitleEl.textContent = data.subtitle || "ROOCH HOLDING INC.";
-      titleEl.textContent = data.title;
-      descEl.textContent = data.desc;
-
-      // Generate bullets list
-      let bulletsHtml = '';
-      data.bullets.forEach(b => {
-        bulletsHtml += `
-          <div style="display: flex; gap: 12px; align-items: flex-start;">
-            <div style="font-size: 20px; width: 36px; height: 36px; border-radius: 8px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #38bdf8;">${b.icon}</div>
-            <div>
-              <strong style="font-size: 13px; color: white; display: block; margin-bottom: 1px;">${b.title}</strong>
-              <p style="margin: 0; font-size: 11.5px; color: var(--text-muted); line-height: 1.35;">${b.text}</p>
-            </div>
-          </div>
-        `;
-      });
-      bulletsEl.innerHTML = bulletsHtml;
-
-      // Determine papers list based on company key
-      let papers = [];
-      let papersNote = '';
-      if (companyKey === 'rooch') {
-        papers = [
-          { name: "Articles of Incorporation", path: "Presentation_Assets/Company Papers/ROOCH/Rooch-Artices-of-Incorporation.pdf" },
-          { name: "By-Laws", path: "Presentation_Assets/Company Papers/ROOCH/Rooch-ByLaws.pdf" },
-          { name: "Certificate of Authentication", path: "Presentation_Assets/Company Papers/ROOCH/Rooch-Certificate-of-Authentication.pdf" },
-          { name: "Certificate of Incorporation", path: "Presentation_Assets/Company Papers/ROOCH/Rooch-Certificate-of-Incorporation.pdf" }
-        ];
-      } else if (companyKey === 'vertex') {
-        papers = [
-          { name: "Vertex Technologies Permits", path: "Presentation_Assets/Company Papers/Vertex Technologies Corporation PERMITS.pdf" }
-        ];
-      } else if (companyKey === 'hanvins') {
-        papers = [
-          { name: "Hanvins Construction Permits", path: "Presentation_Assets/Company Papers/Hanvins Construction PERMITS.pdf" }
-        ];
-      } else if (companyKey === 'jcbs') {
-        papers = [
-          { name: "JCBS Permits", path: "Presentation_Assets/Company Papers/JCBS PERMITS.pdf" }
-        ];
-      } else if (['men2dagupan', 'men2marikina'].includes(companyKey)) {
-        papers = [
-          { name: "Business Permit 2026", path: "Presentation_Assets/Company Papers/MEN2/BUSINESS PERMIT 2026.pdf" },
-          { name: "Amended Articles of Incorporation", path: "Presentation_Assets/Company Papers/MEN2/MEN2 CORP AMENDED ARTICLES OF INCORPORATION (JUNE 29, 2021).pdf" },
-          { name: "Certificate of Incorporation (2022)", path: "Presentation_Assets/Company Papers/MEN2/MEN2 CORP CERTIFICATE OF INCORPORATION (SEPTEMBER 5, 2022).pdf" },
-          { name: "Certificate of Incorporation", path: "Presentation_Assets/Company Papers/MEN2/MEN2 CORP CERTIFICATE OF INCORPORATION.pdf" },
-          { name: "Updated COR", path: "Presentation_Assets/Company Papers/MEN2/MEN2 CORP UPDATED COR.pdf" },
-          { name: "SEC CTC Certificate", path: "Presentation_Assets/Company Papers/MEN2/SEC (CERTIFICATE OF INCORPORATION) CERTIFIED TRUE COPY.pdf" },
-          { name: "SEC CTC", path: "Presentation_Assets/Company Papers/MEN2/SEC- CERTIFIED TRUE COPY.pdf" },
-          { name: "Marketing & Distribution Permits", path: "Presentation_Assets/Company Papers/Men2 Marketing & Distribution Corporation PERMITS.pdf" }
-        ];
-      }
-
-      papersNoteEl.textContent = papersNote;
-      papersNoteEl.style.display = papersNote ? 'block' : 'none';
-
-      if (papers.length > 0) {
-        let papersListHtml = '';
-        papers.forEach(p => {
-          papersListHtml += `
-            <div class="view-pdf-btn" data-pdf="${p.path}" data-name="${p.name}" style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #38bdf8; cursor: pointer; padding: 4.5px 7px; border-radius: 4px; background: rgba(56,189,248,0.04); border: 1px solid rgba(56,189,248,0.1); transition: all 0.2s ease; width: 100%; box-sizing: border-box;" onmouseover="this.style.background='rgba(56,189,248,0.09)'; this.style.borderColor='rgba(56,189,248,0.25)';" onmouseout="this.style.background='rgba(56,189,248,0.04)'; this.style.borderColor='rgba(56,189,248,0.1)';">
-              <span style="font-size: 12px; line-height: 1;">📄</span>
-              <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex-grow: 1; text-align: left;">${p.name}</span>
-            </div>
-          `;
-        });
-        papersListEl.innerHTML = papersListHtml;
-        papersContainer.style.display = 'flex';
-      } else {
-        papersListEl.innerHTML = `
-          <div style="display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; color: var(--text-muted); padding: 8px; border-radius: 4px; background: rgba(255,255,255,0.015); border: 1px dashed rgba(255,255,255,0.08); width: 100%; box-sizing: border-box; font-style: italic;">
-            <span>📁</span>
-            <span>No documents on file yet (N/A)</span>
-          </div>
-        `;
-        papersContainer.style.display = 'flex';
-      }
-
-      // Open animations
-      companyModal.style.display = 'flex';
-      // Force layout reflow
-      void companyModal.offsetWidth;
-      companyModal.style.opacity = '1';
-      if (modalContent) {
-        modalContent.style.transform = 'scale(1) translateY(0)';
-      }
-    }
-
-    function closeCompanyDetailsModal() {
-      companyModal.style.opacity = '0';
-      if (modalContent) {
-        modalContent.style.transform = 'scale(0.9) translateY(20px)';
-      }
-      setTimeout(() => {
-        companyModal.style.display = 'none';
-      }, 300);
-    }
-
-    flowCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const companyKey = card.getAttribute('data-company');
-        openCompanyModal(companyKey);
-      });
-    });
-
-    closeCompanyModalBtn.addEventListener('click', closeCompanyDetailsModal);
-
-    // Backdrop click close
-    companyModal.addEventListener('click', (e) => {
-      if (e.target === companyModal) {
-        closeCompanyDetailsModal();
-      }
-    });
-
-    // PDF Viewer functions
-    function openPdfViewer(path, name) {
-      if (!pdfViewerModal || !pdfViewerIframe) return;
-      pdfViewerTitle.textContent = name;
-      pdfViewerIframe.src = path;
-
-      const fallback = document.getElementById('pdfFallbackLink');
-      if (fallback) fallback.href = path;
-
-      pdfViewerModal.style.display = 'flex';
-      void pdfViewerModal.offsetWidth;
-      pdfViewerModal.style.opacity = '1';
-      if (pdfViewerContent) {
-        pdfViewerContent.style.transform = 'scale(1)';
-      }
-    }
-
-    function closePdfViewer() {
-      if (!pdfViewerModal || !pdfViewerIframe) return;
-      pdfViewerModal.style.opacity = '0';
-      if (pdfViewerContent) {
-        pdfViewerContent.style.transform = 'scale(0.95)';
-      }
-      setTimeout(() => {
-        pdfViewerModal.style.display = 'none';
-        pdfViewerIframe.src = ''; // Clear src to stop parsing in background
-      }, 300);
-    }
-
-    if (closePdfModalBtn) {
-      closePdfModalBtn.addEventListener('click', closePdfViewer);
-    }
-
-    if (pdfViewerModal) {
-      pdfViewerModal.addEventListener('click', (e) => {
-        if (e.target === pdfViewerModal) {
-          closePdfViewer();
-        }
-      });
-    }
-
-    // Global Event Delegation for any view-pdf-btn click
-    document.addEventListener('click', (e) => {
-      const pdfBtn = e.target.closest('.view-pdf-btn');
-      if (pdfBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const pdfPath = pdfBtn.getAttribute('data-pdf');
-        const pdfName = pdfBtn.getAttribute('data-name');
-        openPdfViewer(pdfPath, pdfName);
-      }
-    });
-  }
-
-  /* ==========================================================================
      Slide Specific Animation Triggers
      ========================================================================== */
 
   function triggerSlideScripts(slideIndex) {
-    // Slide 5: Group Savings & Sales (Index 4)
-    if (window.PresentationConfig.slides[slideIndex].file.includes("slide_05_savings")) {
-      animateCounter('solarSavings', 267800, 'Php ', '');
-      animateCounter('evSavings', 737365, 'Php ', '');
-      animateCounter('totalSales', 120, 'Php ', 'M');
-
-      // Trigger bar chart entry animations
-      const bars = document.querySelectorAll('.bar');
-      bars.forEach((bar) => {
-        const heightVal = bar.style.height;
-        bar.style.height = '0px';
-        setTimeout(() => {
-          bar.style.height = heightVal;
-        }, 100);
-      });
-    }
+    const activeSlideConfig = window.PresentationConfig?.slides?.[slideIndex];
+    if (!activeSlideConfig) return;
 
     // O!Save Capital Request
-    if (window.PresentationConfig.slides[slideIndex].file.includes("slide_06_capital")) {
+    if (activeSlideConfig.file.includes("capital")) {
       animateCounter('totalRequestVal', 215000000, 'Php ', '');
     }
 
     // O!Save Demand Impact slides
-    const demandSlideFile = window.PresentationConfig.slides[slideIndex].file;
-    if (demandSlideFile.includes("slide_09_demand") || demandSlideFile.includes("slide_09b_demand_pancit")) {
+    const demandSlideFile = activeSlideConfig.file;
+    if (demandSlideFile.includes("demand")) {
       const dbars = document.querySelectorAll('.d-bar');
       dbars.forEach((bar) => {
         const heightVal = bar.getAttribute('data-height');
@@ -670,163 +376,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Vertex Gallery Switcher Logic
-  const vertexTabs = document.querySelectorAll('.vertex-tab');
-  const galleryThumbsRow = document.getElementById('galleryThumbsRow');
-  const galleryMainImg = document.getElementById('galleryMainImg');
-  const galleryTitle = document.getElementById('galleryTitle');
-  const vertexMetricText = document.getElementById('vertexMetricText');
-
-  const vertexGalleryData = {
-    erp: {
-      metric: "VOS ERP: Active in 5 corporate subsidiaries. Handles over Php 250M of consolidated transactions annually.",
-      images: [
-        { src: "Presentation_Assets/Vertex/voss_erp_dashboard.png", thumbnail: "assets/optimized/technology/voss-erp-dashboard.jpg", title: "VOS ERP Suite - Administration Dashboard", desc: "VOS ERP serves as the enterprise core, providing automated ledgers, capex planning, real-time inventory matching, and payroll integration." },
-        { src: "Presentation_Assets/Vertex/voss_erp_ledger.png", thumbnail: "assets/optimized/technology/voss-erp-ledger.jpg", title: "VOS ERP Suite - General Ledger Module", desc: "Automated general ledger tracking and reporting, syncing accounts payable/receivable across holding operations." },
-        { src: "Presentation_Assets/Vertex/voss_erp_inventory.png", thumbnail: "assets/optimized/technology/voss-erp-inventory.jpg", title: "VOS ERP Suite - Stock & Inventory Ledger", desc: "Real-time multi-warehouse inventory management, handling SKU tracking and cross-branch stock transfers." }
-      ]
-    },
-    dealer: {
-      metric: "Dealerover Sync: Integrated with MEN2 distribution hubs. Over 1,200 active dealer subscribers synced.",
-      images: [
-        { src: "Presentation_Assets/Vertex/vosdealer_main_dashboard.jpg", thumbnail: "assets/optimized/technology/vosdealer-main-dashboard.jpg", title: "Dealerover - Main SCM Dashboard", desc: "Main portal for Supply Chain Management, coordinating branch replenishment orders and stock logistics." },
-        { src: "Presentation_Assets/Vertex/vosdealer_crm_dashboard.jpg", thumbnail: "assets/optimized/technology/vosdealer-crm-dashboard.jpg", title: "Dealerover - Customer CRM Portal", desc: "CRM interface for dealer registrations, distributor order tracking, and field client profiling." },
-        { src: "Presentation_Assets/Vertex/vosdealer_scm_approval.jpg", thumbnail: "assets/optimized/technology/vosdealer-scm-approval.jpg", title: "Dealerover - Purchase Order Approvals", desc: "Authorized approval workflow for procurement, stock transfers, and distributor billing." }
-      ]
-    },
-    elgu: {
-      metric: "eLGU Municipal Portals: Live in Mapandan, Pangasinan. Decreased business permit processing times by 75%.",
-      images: [
-        { src: "Presentation_Assets/Vertex/elgu_mapandan_portal.jpg", thumbnail: "assets/optimized/technology/elgu-mapandan-portal.jpg", title: "eLGU - Municipal Portal Homepage", desc: "Citizen-facing portal for Bayan ng Mapandan, enabling online business permits, tax processing, and local clearances." },
-        { src: "Presentation_Assets/Vertex/elgu_admin_view.jpg", thumbnail: "assets/optimized/technology/elgu-admin-view.jpg", title: "eLGU - Administration Point-of-View", desc: "Backoffice admin system for municipal assessors to review tax filings, business licenses, and civil registry requests." },
-        { src: "Presentation_Assets/Vertex/LGU Digitalization/4bff27fa-338e-439f-a76b-ecbd690e404d.jpg", thumbnail: "assets/optimized/technology/elgu-services.jpg", title: "eLGU - Digital Services List", desc: "List of active digital services available on the portal, including building zoning permits, clearances, and local licensing." }
-      ]
-    },
-    sfa: {
-      metric: "SFA Mobile: Deployed to 80+ field logistics agents. Automates booking, inventory audits, and daily cash collection reconciliation.",
-      images: [
-        { src: "Presentation_Assets/Vertex/sfa_booking_list.jpg", thumbnail: "assets/optimized/technology/sfa-booking-list.jpg", title: "SFA - Mobile Distributor Booking App", desc: "Mobile Sales Force Automation app used by field agents to log distributor orders and track dealer inventory in real-time." },
-        { src: "Presentation_Assets/Vertex/sfa_site_sales_summary.jpg", thumbnail: "assets/optimized/technology/sfa-site-sales-summary.jpg", title: "SFA - Site Sales Performance Summary", desc: "Mobile summary dashboard showing daily sales achievements, customer logs, and delivery booking statuses." },
-        { src: "Presentation_Assets/Vertex/SFA Booking/Screenshot_20260328-102311.jpg", thumbnail: "assets/optimized/technology/sfa-checkout.jpg", title: "SFA Mobile - Real-time Checkout", desc: "Real-time order checkout interface showing product list, quantity selections, and automated shipping schedules." }
-      ]
-    }
-  };
-
-  function loadVertexTab(tabKey) {
-    const data = vertexGalleryData[tabKey];
-    if (!data) return;
-
-    // Update metric text
-    if (vertexMetricText) vertexMetricText.textContent = data.metric;
-
-    // Clear and build thumbs row
-    if (galleryThumbsRow) {
-      galleryThumbsRow.innerHTML = '';
-      data.images.forEach((imgData, index) => {
-        const thumb = document.createElement('div');
-        thumb.className = `gal-thumb ${index === 0 ? 'active' : ''}`;
-        thumb.setAttribute('data-img', imgData.src);
-        thumb.setAttribute('data-title', imgData.title);
-        thumb.setAttribute('data-desc', imgData.desc);
-
-        const img = document.createElement('img');
-        img.src = imgData.thumbnail || imgData.src;
-        img.alt = imgData.title;
-        img.loading = "lazy";
-        img.decoding = "async";
-
-        thumb.appendChild(img);
-        galleryThumbsRow.appendChild(thumb);
-      });
-    }
-
-    // Load first image as main
-    if (data.images.length > 0) {
-      setMainImage(data.images[0].src, data.images[0].title, data.images[0].desc);
-    }
-  }
-
-  function setMainImage(src, title, desc) {
-    if (galleryMainImg) {
-      const ownerSlide = galleryMainImg.closest('.slide');
-      const shouldLoad = !ownerSlide || ownerSlide.classList.contains('is-active');
-      if (shouldLoad) {
-        galleryMainImg.src = src;
-        galleryMainImg.removeAttribute('data-src');
-      } else {
-        galleryMainImg.dataset.src = src;
-        galleryMainImg.removeAttribute('src');
-      }
-      galleryMainImg.alt = title;
-      galleryMainImg.setAttribute('title', desc);
-    }
-    if (galleryTitle) galleryTitle.textContent = title;
-  }
-
-  // Handle thumbnail clicks dynamically
-  if (galleryThumbsRow) {
-    galleryThumbsRow.addEventListener('click', (e) => {
-      const thumb = e.target.closest('.gal-thumb');
-      if (thumb) {
-        document.querySelectorAll('.gal-thumb').forEach(t => t.classList.remove('active'));
-        thumb.classList.add('active');
-        const src = thumb.getAttribute('data-img');
-        const title = thumb.getAttribute('data-title');
-        const desc = thumb.getAttribute('data-desc');
-        setMainImage(src, title, desc);
-      }
-    });
-  }
-
-  // Initialize first tab
-  if (vertexTabs.length > 0) {
-    loadVertexTab('erp');
-  }
-
-  // Unified robust click handler using event delegation for tabs
-  document.addEventListener('click', (e) => {
-    // 1. Slide 11: Prezi Card Zoom Nodes
-    const cardNode = e.target.closest('.prezi-card-node:not(.hanvin-card-node)');
-    if (cardNode) {
-      e.preventDefault();
-      const target = cardNode.getAttribute('data-target');
-      const container = document.getElementById('preziContainer');
-      const exitBtn = document.getElementById('exitPreziBtn');
-      if (container && exitBtn) {
-        container.classList.remove('active-vertex');
-        container.classList.add(`active-${target}`);
-        exitBtn.style.display = 'flex';
-      }
-      return;
-    }
-
-    // 3. Slide 11: Prezi Exit Zoom Button
-    const exitPrezi = e.target.closest('#exitPreziBtn');
-    if (exitPrezi) {
-      e.preventDefault();
-      const container = document.getElementById('preziContainer');
-      if (container) {
-        container.classList.remove('active-vertex');
-      }
-      exitPrezi.style.display = 'none';
-      return;
-    }
-
-    // 2. Vertex Inner Product Tabs Switcher
-    const vTab = e.target.closest('.vertex-tab');
-    if (vTab) {
-      e.preventDefault();
-      const target = vTab.getAttribute('data-target');
-      const vTabs = document.querySelectorAll('.vertex-tab');
-      if (vTabs.length > 0) {
-        vTabs.forEach(t => t.classList.remove('active'));
-        vTab.classList.add('active');
-        loadVertexTab(target);
-      }
-      return;
-    }
-  });
-
   // Present Fullscreen API & Fallback present-mode Toggle
   const presentBtn = document.getElementById('presentBtn');
   const exitPresentBtn = document.getElementById('exitPresentBtn');
@@ -869,19 +418,10 @@ document.addEventListener('DOMContentLoaded', () => {
     exitPresentBtn.addEventListener('click', exitPresentMode);
   }
 
-  // Escape key exits present-mode and Prezi zoom modes
+  // Escape key exits present-mode
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' || e.key === 'Esc') {
       exitPresentMode();
-
-      // Reset Slide 11 Prezi
-      const container11 = document.getElementById('preziContainer');
-      const exit11 = document.getElementById('exitPreziBtn');
-      if (container11 && exit11) {
-        container11.classList.remove('active-vertex');
-        exit11.style.display = 'none';
-      }
-
     }
   });
 
@@ -1153,53 +693,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     Slide 10 Telemetry Log Simulator
-     ========================================================================== */
-  const consoleLogPool = [
-    { text: "ORDER #1904: Noodles sync -> Dagupan Hub", color: "#fb923c" },
-    { text: "STOCK SYNC: O!Save Mapandan updated (+120 cases)", color: "#38bdf8" },
-    { text: "ROUTING RUN: Automated route optimization finished", color: "#a5f3fc" },
-    { text: "OIL PRODUCT STOCK: Marikina Hub -> O!Save South NCR", color: "#38bdf8" },
-    { text: "FLEET STATS: Truck #08 registered at Pangasinan checkpoint", color: "#a5f3fc" },
-    { text: "SAAS SYNC: Dealerover client terminal 12 connection OK", color: "#22c55e" },
-    { text: "BULK DISPATCH: 140 crates of Mama Pina's dispatched", color: "#fb923c" },
-    { text: "STOCK WARNING: Low oil inventory alert at Marikina Hub (resolved)", color: "#e11d48" },
-    { text: "REPLENISH SYNC: O!Save Hanvin triggers batch requisition", color: "#a855f7" }
-  ];
-
-  function runTelemetrySimulator() {
-    const consoleContainer = document.getElementById('logConsoleContainer');
-    if (!consoleContainer) return;
-
-    const logIdx = Math.floor(Math.random() * consoleLogPool.length);
-    const logItem = consoleLogPool[logIdx];
-
-    const now = new Date();
-    const timeStr = `[${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}]`;
-
-    const row = document.createElement('div');
-    row.style.opacity = '0';
-    row.style.transform = 'translateY(-5px)';
-    row.style.transition = 'all 0.3s ease';
-    row.style.color = logItem.color;
-    row.textContent = `${timeStr} ${logItem.text}`;
-
-    consoleContainer.appendChild(row);
-
-    setTimeout(() => {
-      row.style.opacity = '1';
-      row.style.transform = 'translateY(0)';
-    }, 50);
-
-    while (consoleContainer.children.length > 4) {
-      consoleContainer.removeChild(consoleContainer.firstChild);
-    }
-  }
-
-  // Poll simulator logs
-  setInterval(runTelemetrySimulator, 2500);
-
-  /* ==========================================================================
      Dynamic Slide Loading
      ========================================================================== */
   const slideNamesToLoad = window.PresentationConfig ? window.PresentationConfig.slides.map(s => s.file) : [];
@@ -1421,8 +914,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Oil Capacity Simulator
     if (data.oilCapacity && document.getElementById("oilCapacityTabs")) {
       const OIL_RATES = {
-        p350: { fixedCurrDay: 12600, fixedCurrNight: 7200, expHourly: 7200 },
-        p1L: { fixedCurrDay: 4800, fixedCurrNight: 3600, expHourly: 1800 },
+        p350: { fixedCurrDay: 12600, fixedCurrNight: 7200, expHourly: 3200 },
+        p1L: { fixedCurrDay: 4800, fixedCurrNight: 3600, expHourly: 1600 },
         c1L: { fixedCurrDay: 4800, fixedCurrNight: 3600, expHourly: 1800 }
       };
       const OIL_KEYS = ["p350", "p1L", "c1L"];
@@ -1695,7 +1188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
       if (document.getElementById("oilCycleFlow")) {
-        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 42 });
+        renderCycle("oilCycleFlow", oil.cycle, { interactive: true, radius: 34 });
         document.querySelectorAll("#oilCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }
@@ -1729,7 +1222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
       if (document.getElementById("pancitCycleFlow")) {
-        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 42 });
+        renderCycle("pancitCycleFlow", pancit.cycle, { interactive: true, radius: 34 });
         document.querySelectorAll("#pancitCycleFlow .cycle-step").forEach(button => button.addEventListener("click", () => selectStep(Number(button.dataset.cycleIndex))));
         selectStep(0);
       }
@@ -2035,24 +1528,6 @@ document.addEventListener('DOMContentLoaded', () => {
       slidesContainer.innerHTML = htmlContent;
       slides = document.querySelectorAll('.slide');
     }
-
-    // Keep the inlined presentation aligned with the configured navigation order.
-    const legacyHanvinSlide = slidesContainer.querySelector('[data-slide-key="hanvin"]');
-    if (legacyHanvinSlide) legacyHanvinSlide.remove();
-
-    const achievementsSlide = slidesContainer.querySelector('[data-slide-key="achievements"]');
-    const logisticsSlide = slidesContainer.querySelector('[data-slide-key="men2-dealerover"]');
-    if (achievementsSlide && logisticsSlide) {
-      slidesContainer.insertBefore(achievementsSlide, logisticsSlide);
-    }
-
-    const pancitDemandSlide = slidesContainer.querySelector('[data-title="O!Save Demand Impact Pancit"]');
-    const capitalRequestSlide = slidesContainer.querySelector('[data-title="O!Save Capital Request"]');
-    if (pancitDemandSlide && capitalRequestSlide) {
-      pancitDemandSlide.after(capitalRequestSlide);
-    }
-
-    slides = document.querySelectorAll('.slide');
 
     totalSlides = slides.length;
 

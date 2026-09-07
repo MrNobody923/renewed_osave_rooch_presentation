@@ -87,8 +87,8 @@ window.OSavePresentation = {
     ["VIL", "Villasis", 8571], ["MEY", "Meycauayan", 8571], ["NVE", "Nueva Ecija", 8571], ["TAY", "Taytay", 8571]
   ],
   oilCapacity: [
-    { label: "Palm Oil 350mL", unitsPerCase: 36, growth: "+336%", current: [12600, 7200, 19800, 594000], expanded: [43200, 43200, 86400, 2592000] },
-    { label: "Palm Oil 1L", unitsPerCase: 12, growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] },
+    { label: "Palm Oil 350mL", unitsPerCase: 36, growth: "+159%", current: [12600, 7200, 19800, 594000], expanded: [25600, 25600, 51200, 1536000] },
+    { label: "Palm Oil 1L", unitsPerCase: 12, growth: "+205%", current: [4800, 3600, 8400, 252000], expanded: [12800, 12800, 25600, 768000] },
     { label: "Canola Oil 1L", unitsPerCase: 12, growth: "+157%", current: [4800, 3600, 8400, 252000], expanded: [10800, 10800, 21600, 648000] }
   ],
   pancitCurrentCapacity: [
@@ -134,20 +134,20 @@ window.OSavePresentation = {
       ["Wk 25", 6, 3], ["Wk 26", 6, 3], ["Wk 27", 6, 3]
     ],
     cashCycle: [
-      { label: "Purchase order", days: 5, share: 7.2, tone: "blue" },
-      { label: "Weekly shipment", days: 7, share: 10.1, tone: "sky" },
-      { label: "Warehouse", days: 8, share: 11.6, tone: "mid" },
-      { label: "Daily production", days: 1, share: 1.4, tone: "mint" },
-      { label: "Delivery to O!Save", days: 3, share: 4.3, tone: "green" },
-      { label: "Collection (fixed DSO)", days: 45, share: 65.2, tone: "deep-green" }
+      { label: "Purchase order", days: 45, share: 40.5, tone: "blue" },
+      { label: "Weekly shipment", days: 14, share: 12.6, tone: "sky" },
+      { label: "Warehouse", days: 3, share: 2.7, tone: "mid" },
+      { label: "Daily production", days: 1, share: 0.9, tone: "mint" },
+      { label: "Delivery to O!Save", days: 3, share: 2.7, tone: "green" },
+      { label: "Collection (fixed DSO)", days: 45, share: 40.5, tone: "deep-green" }
     ],
     cycle: [
-      { label: "Purchase", sublabel: "Raw materials", duration: "5 days", phase: "procurement", detail: "Order 6 Palm and 3 Canola containers each week: USD 270,255 total." },
-      { label: "Weekly", sublabel: "Shipment", duration: "7 days", phase: "procurement", detail: "Nine containers move by sea freight on a weekly import cadence with an approximately 7-day lead time." },
-      { label: "Warehouse", sublabel: "Inventory", duration: "8 days", phase: "procurement", detail: "On-hand inventory totals 1,225,555 liters across Palm 350mL, Palm 1L, and Canola 1L." },
+      { label: "Purchase", sublabel: "Raw materials", duration: "45 days", phase: "procurement", detail: "Order 6 Palm and 3 Canola containers each week: USD 270,255 total." },
+      { label: "Weekly", sublabel: "Shipment", duration: "2 weeks", phase: "procurement", detail: "Nine containers move by sea freight on a weekly import cadence with an approximately 14-day lead time." },
+      { label: "Warehouse", sublabel: "Inventory", duration: "3 days", phase: "procurement", detail: "On-hand inventory totals 1,225,555 liters across Palm 350mL, Palm 1L, and Canola 1L." },
       { label: "Daily", sublabel: "Production", duration: "1 day", phase: "procurement", detail: "Production begins on receipt and runs daily across all three edible-oil SKUs." },
       { label: "Daily", sublabel: "Delivery to O!Save", duration: "3 days", phase: "revenue", detail: "Finished units are delivered to O!Save daily, totaling 331,007.44 units available each week." },
-      { label: "O!Save", sublabel: "Accounts receivable", duration: "45-day term", phase: "revenue", detail: "The receivable starts when O!Save confirms receipt of the finished goods." },
+      { label: "O!Save", sublabel: "Accounts receivable", duration: "45 days", phase: "revenue", detail: "The receivable starts when O!Save confirms receipt of the finished goods." },
       { label: "Collection", sublabel: "Fixed DSO", duration: "Day 45", phase: "revenue", detail: "Working capital is recovered on Day 45 when O!Save settles the receivable." },
       { label: "Reinvestment", sublabel: "Next weekly cycle", duration: "Repeat", phase: "revenue", detail: "Recovered cash is recommitted to the next 6-Palm and 3-Canola container order." }
     ]
